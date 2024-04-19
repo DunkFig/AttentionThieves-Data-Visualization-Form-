@@ -1,0 +1,110 @@
+* {
+    background-color: aliceblue;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    margin: 0px;
+    overflow: auto;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+input[type=text] {
+    padding: 10px 15px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: rgb(215, 231, 241);
+    color: black;
+    border: blue;
+}
+
+input[type=email] {
+    padding: 10px 15px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: rgb(215, 231, 241);
+    color: black;
+    border: blue;
+}
+
+::placeholder {
+    color: rgb(97, 97, 97);
+    opacity: 1;
+    /* Firefox */
+}
+
+form {
+    padding-left: 5%;
+    padding-top: 20px; 
+    background: linear-gradient(rgb(224, 235, 224), rgb(152, 209, 242));
+}
+
+div {
+    line-height: 27px;
+    font-size: 16px;
+    background-color: rgba(138, 188, 215, 0.277);
+    padding: 2%;
+    color: #2d2d2d;
+    border-radius: 5px;
+    width: 90%;
+}
+
+section {
+    text-align: center;
+}
+
+div.select {
+    appearance: none;
+    /* safari */
+    -webkit-appearance: none;
+    /* other styles for aesthetics */
+    width: 100%;
+    font-size: 1.15rem;
+    padding: 0.675em 6em 0.675em 1em;
+    background-color: #fff;
+    border: 1px solid #caced1;
+    border-radius: 0.25rem;
+    color: #000;
+    cursor: pointer;
+}
+
+#backgroundDiv {
+    background-color: aliceblue;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    position: fixed;
+    margin: 0px;
+    padding: 0px;
+}
+
+button{
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: #00000034 5px 5px 10px;
+    background-color: rgb(215, 231, 241);
+}
+
+button:hover{
+    background-color: rgba(159, 181, 203, 0.95)
+}
+
+p{
+    font-size: 16px;
+    padding: 2%;
+    color: #545252;
+}
+
+h1{
+    padding: 2%;
+    margin-top: 20px;
+}

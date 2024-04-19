@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+
+    <!-- CDN FOR D3 and D3 Cloud -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.7/d3.layout.cloud.min.js"></script>
+
+</head>
+
+<body>
+    <script>
+        let appURL = "https://script.google.com/macros/s/AKfycbw8qgcq7plcCGztiiumEc6lE6x4fgngZAI594e7uBFNe9seH9K3CghzRuMHiKFNaFiW/exec"
+    </script>
+
+    <div id="loading" style="background-color: rgba(240, 248, 255, 0); position: fixed; top: 40%; display: none; ">
+        <h1 style="background-color: rgba(240, 248, 255, 0.718); width: 50%; padding:10%; margin-left: 15%; border-radius: 5px;">
+        Loading...
+        </h1>
+    </div>
+    <section id="backgroundDiv" style="text-align: center; overflow: scroll;">
+        <br>
+        <br>
+        <br>
+        <h1 style="background-color: rgba(240, 248, 255, 0);"">
+            Your classmates found that most of their Attention theives were:
+        </h1>
+        <br>
+        <div style="background-color: rgba(240, 248, 255, 0); display: flex; padding-bottom: 0px;">
+            <div id="Answer1" style="background-color: rgba(240, 248, 255, 0)"></div>
+            <div id="Answer2" style="background-color: rgba(240, 248, 255, 0)"></div>
+            <div id="Answer3" style="background-color: rgba(240, 248, 255, 0)"></div>
+        </div>
+       
+        <div style="background-color: rgba(240, 248, 255, 0); overflow: visible" id="d3BarChartHolder"></div>
+        <div style="background-color: rgba(240, 248, 255, 0); overflow: visible" id="d3WordCloudHolder"></div>
+    </section>
+    <form id="myForm" method="POST"
+        action=appURL>
+
+        <h1 style="background-color: rgba(240, 248, 255, 0);">Attention Thieves</h1>
+        <p style="background-color: rgba(240, 248, 255, 0);">In the following interactive we'll fill out some questions
+            reguarding your attention thieves.
+            These answers will be sent directly to your proffesor, once you've completed the form you'll be able
+            to see how the rest of your classmates have responded.
+        </p>
+        <br>
+        <div>
+            Please enter your Name and Current Email Address,
+            this adress will be accessed by your proffesor to contact you about your work.
+            <br>
+            <br>
+            <input name="Name" type="text" placeholder="Name" required>
+            <br>
+            <input name="Email" type="email" placeholder="Email" required>
+        </div>
+        <br>
+        <div>
+            What would you say is one of your biggest "Attention Thieves"?
+            <br>
+            <br>
+            <input name="Attention Thief" type="text" placeholder="Attention Thief" required>
+        </div>
+        <br>
+        <div>
+            Would you say this is an Internal Distraction or an External Distraction?
+            <br>
+            <br>
+            <select name="Internal or External?" required>
+                <option value="">Please select an option</option>
+                <option value="Internal">Internal</option>
+                <option value="External">External</option>
+                <option value="Unsure">Unsure</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            How would you Redirect yourself after this attention thief?
+            <br>
+            <br>
+            <input name="Redirect" type="text" placeholder="How I Redirect" required>
+        </div>
+        <br>
+        <br>
+        <section style="padding: 50px; background-color: rgba(152, 209, 242, 0);">
+            <button type="submit">See Class Results</button>
+        </section>
+        <br>
+    </form>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('myForm').addEventListener('submit', function (e) {
+                pullUpLoadingWindow()
+                e.preventDefault(); // Prevent default form submission
+
+                const formData = new FormData(this); // Grab the form data
+
+                fetch(appURL, {
+                    method: 'POST',
+                    body: formData,
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        ActivateD3Charts(setTimeout(ChangeHTMLforDataStage, 2000))
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+
+        function pullUpLoadingWindow() {
+            document.getElementById('loading').style.display = "block";
+        }
+
+        function ChangeHTMLforDataStage() {
+            let backgroundDiv = document.getElementById('backgroundDiv')
+            backgroundDiv.style.zIndex = "10";
+        }
+
+    </script>
+
+
+
+    <script src="index.js" async defer></script>
+</body>
+
+</html>
